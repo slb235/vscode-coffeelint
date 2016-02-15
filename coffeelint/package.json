@@ -1,0 +1,51 @@
+{
+  "name": "vscode-coffeelint",
+  "displayName": "CoffeeLint",
+  "description": "Integrates CoffeeLint into VS Code.",
+  "author": "Jonathan Rauprich",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slb235/vscode-coffeelint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slb235/vscode-coffeelint/issues"
+  },
+  "publisher": "slb235",
+  "icon": "CoffeeScript-logo.png",
+  "engines": {
+    "vscode": "0.10.x"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:coffeescript"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "CoffeeLint configuration",
+      "properties": {
+        "coffeelint.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Control whether coffeelint is enabled for CoffeeScript files or not."
+        }
+      }
+    }
+  },
+  "main": "./out/src/extension",
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+  },
+  "devDependencies": {
+    "typescript": "^1.6.2",
+    "vscode": "0.10.x"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^1.1.0"
+  }
+}

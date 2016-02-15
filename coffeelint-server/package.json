@@ -1,0 +1,21 @@
+{
+  "name": "coffeelint-server",
+  "description": "Coffeelint server for vscode",
+  "version": "0.0.1",
+  "author": "Jonathan Rauprich",
+  "license": "MIT",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "vscode-languageserver": "^1.1.0",
+    "coffeelint":"*"
+  },
+  "devDependencies": {
+    "typescript": "^1.6.2"
+  },
+  "scripts": {
+    "compile": "installServerIntoExtension ../coffeelint ./package.json ./tsconfig.json && tsc -p .",
+    "watch": "installServerIntoExtension ../coffeelint ./package.json ./tsconfig.json && tsc --watch -p ."
+  }
+}

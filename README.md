@@ -1,0 +1,1 @@
+# CoffeeLint for VSCode
