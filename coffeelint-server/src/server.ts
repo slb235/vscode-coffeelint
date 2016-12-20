@@ -30,13 +30,13 @@ function loadCofffeeLintConfig() {
   }
   catch (error) {
     // no config file or malformed, use default then
-  }  
+  }
 }
 
 connection.onInitialize((params): InitializeResult => {
   coffeLintConfigFile = path.join(params.rootPath, 'coffeelint.json');
   loadCofffeeLintConfig()
-  
+
   return {
     capabilities: {
       textDocumentSync: documents.syncKind,
@@ -51,19 +51,22 @@ documents.onDidChangeContent((change) => {
   validateTextDocument(change.document);
 });
 
-function validateTextDocument(textDocument: ITextDocument): void {  
+function validateTextDocument(textDocument: ITextDocument): void {
   let diagnostics: Diagnostic[] = [];
   let text = textDocument.getText();
   let issues = coffeeLint.lint(text, projectLintConfig);
   for(var issue of issues) {
     var severity;
-    
+
     if(issue.level === "warning") {
       severity = DiagnosticSeverity.Warning;
-    } else {
+    } else if(issue.level === "error") {
       severity = DiagnosticSeverity.Error;
     }
-    
+    else {
+      continue;
+    }
+
     diagnostics.push({
       severity: severity,
       range: {
